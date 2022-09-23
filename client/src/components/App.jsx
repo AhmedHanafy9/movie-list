@@ -45,7 +45,7 @@ const App = () => {
     setIsWatched(!isWatched);
   };
 
-  const showWatchedMovies = (event) => {
+  const showWatchedMovies = () => {
     let watchedMovies = movies.filter((movie) => {
       return movie.watched;
     });
@@ -53,14 +53,14 @@ const App = () => {
     setFilteredMovies(watchedMovies);
   };
 
-  const showUnwatchedMovies = (event) => {
+  const showUnwatchedMovies = () => {
     let unwatchedMovies = movies.filter((movie) => {
       return !movie.watched;
     });
     setFilteredMovies(unwatchedMovies);
   };
 
-  const showAllMovies = (event) => {
+  const showAllMovies = () => {
     setFilteredMovies(movies);
   };
 
