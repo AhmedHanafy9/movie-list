@@ -1,3 +1,56 @@
 body {
   font-family: sans-serif, arial;
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  padding: 10px;
+}
+
+input {
+  height: 30px;
+}
+
+.title-bar {
+  background-color: whitesmoke;
+  height: 50px
+}
+
+.movie-list {
+  border: 1px solid gray thin;
+  width: 750px;
+}
+
+.movie-list-entry {
+  border: 1px solid gray;
+  padding: 30px;
+}
+
+.movie-form {
+  padding: 20px;
+  padding-left: 0px;
+}
+.search-form {
+  padding: 20px;
+  padding-left: 0px;
+}
+
+.movie-input {
+  width: 300px;
+}
+
+.watched-button {
+  float: right;
+}
+
+.add-button {
+  border-color: greenyellow;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  font-size: medium;
+  background-color: greenyellow;
+  height: 35px;
+  margin: 4px;
 }
