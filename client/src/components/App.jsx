@@ -5,6 +5,7 @@ import AddMovie from './AddMovie.jsx';
 import Search from './Search.jsx';
 
 const {useState} = React;
+const {useEffect} = React;
 
 const App = () => {
 
@@ -16,10 +17,9 @@ const App = () => {
     {title: 'Ex Machina', watched: false}
   ];
 
-  const [movies, setMovies] = useState(baseMovies);
-  const [filteredMovies, setFilteredMovies] = useState(baseMovies);
-
-
+  const [movies, setMovies] = useState([]);
+  const [filteredMovies, setFilteredMovies] = useState([]);
+  const [isWatched, setIsWatched] = useState(false);
 
   const addMovie = function(movieString) {
     var movieToAdd = ([...movies, {title: movieString, watched: false}]);
@@ -42,25 +42,21 @@ const App = () => {
         movies[i].watched = !movies[i].watched;
       }
     }
+    setIsWatched(!isWatched);
   };
 
   const showWatchedMovies = (event) => {
-    var watchedMovies = [];
-    for (var i = 0; i < movies.length; i++) {
-      if (movies[i].watched) {
-        watchedMovies.push(movies[i]);
-      }
-    }
+    var watchedMovies = movies.filter((movie) => {
+      return movie.watched;
+    });
+
     setFilteredMovies(watchedMovies);
   };
 
   const showUnwatchedMovies = (event) => {
-    var unwatchedMovies = [];
-    for (var i = 0; i < movies.length; i++) {
-      if (!movies[i].watched) {
-        unwatchedMovies.push(movies[i]);
-      }
-    }
+    var unwatchedMovies = movies.filter((movie) => {
+      return !movie.watched;
+    });
     setFilteredMovies(unwatchedMovies);
   };
 
@@ -76,10 +72,10 @@ const App = () => {
       </nav>
       <AddMovie handleAddMovie={addMovie}/>
       <Search handleSearchMovie={searchMovies}/>
-      <button onClick ={showWatchedMovies}>Watched</button>
-      <button onClick ={showUnwatchedMovies}>To Watch</button>
-      <button onClick ={showAllMovies}>All</button>
-      <MovieList listOfMovies={filteredMovies} handleWatched={handleWatched} watchedMovies={watchedMovies}/>
+      <button className = "watched-movies" onClick ={showWatchedMovies}>Watched</button>
+      <button className = "unwatched-movies" onClick ={showUnwatchedMovies}>To Watch</button>
+      <button className = "all-movies" onClick ={showAllMovies}>All</button>
+      <MovieList listOfMovies={filteredMovies} handleWatched={handleWatched}/>
     </div>
   );
 };

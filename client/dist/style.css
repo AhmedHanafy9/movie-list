@@ -2,6 +2,13 @@ body {
   font-family: sans-serif, arial;
   display: flex;
   justify-content: center;
+  background-color: #E8e8e8;
+}
+
+#app {
+  border: 2px solid whitesmoke;
+  box-shadow: 0 0 10px slategray;
+  background-color: white;
 }
 
 h1 {
@@ -14,12 +21,17 @@ input {
 
 .title-bar {
   background-color: whitesmoke;
-  height: 50px
+  height: 50px;
+  padding-left: 30px;
 }
 
 .movie-list {
   border: 1px solid gray thin;
   width: 750px;
+  padding-top: 0px;
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-bottom: 30px;
 }
 
 .movie-list-entry {
@@ -29,11 +41,11 @@ input {
 
 .movie-form {
   padding: 20px;
-  padding-left: 0px;
+  padding-left: 30px;
 }
 .search-form {
   padding: 20px;
-  padding-left: 0px;
+  padding-left: 30px;
 }
 
 .movie-input {
@@ -42,6 +54,17 @@ input {
 
 .watched-button {
   float: right;
+}
+
+.watched-movies {
+  margin-left: 30px;
+  height: 35px
+}
+.unwatched-movies {
+  height: 35px
+}
+.all-movies {
+  height: 35px
 }
 
 .add-button {
