@@ -9,27 +9,27 @@ const {useEffect} = React;
 
 const App = () => {
 
-  var baseMovies = [
-    {title: 'Mean Girls', watched: false},
-    {title: 'Hackers', watched: false},
-    {title: 'The Grey', watched: false},
-    {title: 'Sunshine', watched: false},
-    {title: 'Ex Machina', watched: false}
-  ];
+  // let baseMovies = [
+  //   {title: 'Mean Girls', watched: false},
+  //   {title: 'Hackers', watched: false},
+  //   {title: 'The Grey', watched: false},
+  //   {title: 'Sunshine', watched: false},
+  //   {title: 'Ex Machina', watched: false}
+  // ];
 
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [isWatched, setIsWatched] = useState(false);
 
-  const addMovie = function(movieString) {
-    var movieToAdd = ([...movies, {title: movieString, watched: false}]);
+  const addMovie = (movieString) => {
+    let movieToAdd = ([...movies, {title: movieString, watched: false}]);
     setMovies(movieToAdd);
     setFilteredMovies(movieToAdd);
     event.preventDefault();
   };
 
-  const searchMovies = function(searchString) {
-    var filteredMovies = movies.filter((movie) => {
+  const searchMovies = (searchString) => {
+    let filteredMovies = movies.filter((movie) => {
       return movie.title.toLowerCase().includes(searchString.toLowerCase());
     });
     setFilteredMovies(filteredMovies);
@@ -37,7 +37,7 @@ const App = () => {
   };
 
   const handleWatched = (movieTitle) => {
-    for (var i = 0; i < movies.length; i++) {
+    for (let i = 0; i < movies.length; i++) {
       if (movies[i].title === movieTitle) {
         movies[i].watched = !movies[i].watched;
       }
@@ -46,7 +46,7 @@ const App = () => {
   };
 
   const showWatchedMovies = (event) => {
-    var watchedMovies = movies.filter((movie) => {
+    let watchedMovies = movies.filter((movie) => {
       return movie.watched;
     });
 
@@ -54,7 +54,7 @@ const App = () => {
   };
 
   const showUnwatchedMovies = (event) => {
-    var unwatchedMovies = movies.filter((movie) => {
+    let unwatchedMovies = movies.filter((movie) => {
       return !movie.watched;
     });
     setFilteredMovies(unwatchedMovies);
