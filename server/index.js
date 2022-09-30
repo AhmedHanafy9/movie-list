@@ -1,9 +1,29 @@
 const express = require('express');
+const db = require('./db');
+
+//Middleware
+var morgan = require('morgan');
+var cors = require('cors');
+
+
+//Router
+var router = require('./routes.js');
+
 const app = express();
-const PORT = 3000 || process.env.PORT;
+module.exports.app = app;
+
+app.set('port', 3000);
+
+//Logging and parsing
+app.use(morgan('dev'));
+app.use(cors());
+app.use(express.json());
+
+//Set up routes
+app.use('/', router);
 
 app.use(express.static('client/dist'));
 
-app.listen(PORT, () => {
-  console.log(`Server listening on port: ${PORT}`);
-})
+app.listen(app.get('port'), () => {
+  console.log(`Server listening on port: ${app.get('port')}`);
+});
