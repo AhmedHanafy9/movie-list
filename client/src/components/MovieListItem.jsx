@@ -16,11 +16,10 @@ const MovieListItem = ({movie, handleWatched}) => {
 
   return (
     <div className="movie-list-entry">
-      {movie.title}
+      {movie.moviename}
       <button style ={style}
         className="watched-button"
         type="button"
-        value={movie}
         onClick = {handleWatchedButton}>
         Watched</button>
     </div>

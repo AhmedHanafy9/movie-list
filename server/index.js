@@ -20,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 //Set up routes
-app.use('/', router);
+app.use('/api', router);
 
 app.use(express.static('client/dist'));
 

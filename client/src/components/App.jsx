@@ -3,6 +3,7 @@ import MovieList from './MovieList.jsx';
 import MovieListItem from './MovieListItem.jsx';
 import AddMovie from './AddMovie.jsx';
 import Search from './Search.jsx';
+import axios from 'axios';
 
 const {useState} = React;
 const {useEffect} = React;
@@ -20,6 +21,29 @@ const App = () => {
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [isWatched, setIsWatched] = useState(false);
+
+  const fetchAllMovies = () => {
+    axios.get('http://localhost:3000/api/movies')
+      .then((response) => {
+        setFilteredMovies(response.data);
+      });
+  };
+
+  useEffect(()=> {
+    fetchAllMovies();
+  }, []);
+
+  // useEffect(()=> {
+  //   fetch('http://localhost:3000/api/movies')
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       setFilteredMovies(data);
+  //       console.log('movies', data);
+  //     });
+  // }, []);
+
+
+
 
   const addMovie = (movieString) => {
     let movieToAdd = ([...movies, {title: movieString, watched: false}]);
