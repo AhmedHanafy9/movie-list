@@ -1,11 +1,15 @@
 import React from 'react';
 const {useState} = React;
 
-const MovieListItem = ({movie, handleWatched}) => {
+const MovieListItem = ({movie, handleWatched, handleDelete}) => {
 
 
   const handleWatchedButton = () => {
-    handleWatched(movie.title);
+    handleWatched(movie.moviename);
+  };
+
+  const handleDeleteButton = () => {
+    handleDelete(movie.moviename);
   };
 
   const style = {
@@ -22,6 +26,10 @@ const MovieListItem = ({movie, handleWatched}) => {
         type="button"
         onClick = {handleWatchedButton}>
         Watched</button>
+      <button className="delete-button"
+        type="button"
+        onClick = {handleDeleteButton}>
+        Delete</button>
     </div>
   );
 };

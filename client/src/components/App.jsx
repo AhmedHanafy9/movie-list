@@ -25,48 +25,55 @@ const App = () => {
   const fetchAllMovies = () => {
     axios.get('http://localhost:3000/api/movies')
       .then((response) => {
+        setMovies(response.data);
         setFilteredMovies(response.data);
       });
   };
+
+  const updateAddMovie = (movieTitle) => {
+    const article = {movie: movieTitle, watched: 0};
+    axios.post('http://localhost:3000/api/movies', article)
+      .then(fetchAllMovies);
+  };
+
+  const updateWatchedStatus = (movieTitle) => {
+    const article = {movie: movieTitle};
+    axios.put('http://localhost:3000/api/movies', article)
+      .then(fetchAllMovies());
+  };
+
+  const updateDeleteStatus = (movieTitle) => {
+    const article = {movie: movieTitle};
+    axios.delete('http://localhost:3000/api/movies', {data: article})
+      .then(fetchAllMovies());
+  };
+
 
   useEffect(()=> {
     fetchAllMovies();
   }, []);
 
-  // useEffect(()=> {
-  //   fetch('http://localhost:3000/api/movies')
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       setFilteredMovies(data);
-  //       console.log('movies', data);
-  //     });
-  // }, []);
 
 
-
-
-  const addMovie = (movieString) => {
-    let movieToAdd = ([...movies, {title: movieString, watched: false}]);
-    setMovies(movieToAdd);
-    setFilteredMovies(movieToAdd);
+  const addMovie = (movieTitle) => {
+    updateAddMovie(movieTitle);
     event.preventDefault();
   };
 
   const searchMovies = (searchString) => {
     let filteredMovies = movies.filter((movie) => {
-      return movie.title.toLowerCase().includes(searchString.toLowerCase());
+      return movie.moviename.toLowerCase().includes(searchString.toLowerCase());
     });
     setFilteredMovies(filteredMovies);
     event.preventDefault();
   };
 
   const handleWatched = (movieTitle) => {
-    for (let i = 0; i < movies.length; i++) {
-      if (movies[i].title === movieTitle) {
-        movies[i].watched = !movies[i].watched;
-      }
-    }
-    setIsWatched(!isWatched);
+    updateWatchedStatus(movieTitle);
+  };
+
+  const handleDelete = (movieTitle) => {
+    updateDeleteStatus(movieTitle);
   };
 
   const showWatchedMovies = () => {
@@ -99,7 +106,7 @@ const App = () => {
       <button className = "watched-movies" onClick ={showWatchedMovies}>Watched</button>
       <button className = "unwatched-movies" onClick ={showUnwatchedMovies}>To Watch</button>
       <button className = "all-movies" onClick ={showAllMovies}>All</button>
-      <MovieList listOfMovies={filteredMovies} handleWatched={handleWatched}/>
+      <MovieList listOfMovies={filteredMovies} handleWatched={handleWatched} handleDelete={handleDelete}/>
     </div>
   );
 };

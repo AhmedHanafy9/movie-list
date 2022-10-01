@@ -43,6 +43,7 @@ input {
   padding: 20px;
   padding-left: 30px;
 }
+
 .search-form {
   padding: 20px;
   padding-left: 30px;
@@ -54,6 +55,12 @@ input {
 
 .watched-button {
   float: right;
+}
+
+.delete-button {
+  float: right;
+  margin-right: 5px;
+  background-color: transparent;
 }
 
 .watched-movies {
